@@ -1,4 +1,5 @@
 const captionService = require("../services/captionService");
+const costService = require("../services/costService");
 
 class CaptionController {
 
@@ -6,22 +7,12 @@ class CaptionController {
 
         try {
 
-            const { title, body } = req.body;
-
-            if (!title || !body) {
-
-                return res.status(400).json({
-                    success: false,
-                    message: "title and body are required"
-                });
-
-            }
-
             const captions =
-                await captionService.generateCaptions(
-                    title,
-                    body
+                await captionService.generate(
+                    req.body
                 );
+
+            costService.trackCaptionGeneration();
 
             return res.json({
 
@@ -31,9 +22,7 @@ class CaptionController {
 
             });
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             return res.status(500).json({
 

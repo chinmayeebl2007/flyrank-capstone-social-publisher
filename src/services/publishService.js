@@ -9,24 +9,50 @@ class PublishService {
 
         const campaign =
             await prisma.campaign.findUnique({
+
                 where: {
                     id: campaignId
                 }
+
             });
 
         if (!campaign) {
-            throw new Error("Campaign not found");
+
+            throw new Error(
+                "Campaign not found"
+            );
+
+        }
+
+        if (campaign.status === "PUBLISHED") {
+
+            return {
+
+                success: true,
+
+                message: "Campaign already published"
+
+            };
+
         }
 
         if (Math.random() < 0.2) {
-            throw new Error("Simulated publishing failure");
+
+            throw new Error(
+                "Simulated publishing failure"
+            );
+
         }
 
         const instagram =
-            await instagramPublisher.publish(campaign);
+            await instagramPublisher.publish(
+                campaign
+            );
 
         const x =
-            await xPublisher.publish(campaign);
+            await xPublisher.publish(
+                campaign
+            );
 
         await prisma.campaign.update({
 

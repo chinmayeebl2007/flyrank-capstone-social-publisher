@@ -21,11 +21,36 @@ class WebhookService {
 
         }
 
+        const existingEvent =
+            await prisma.webhookEvent.findUnique({
+
+                where: {
+
+                    eventId: body.eventId
+
+                }
+
+            });
+
+        if (existingEvent) {
+
+            return {
+
+                success: true,
+
+                message: "Duplicate webhook ignored"
+
+            };
+
+        }
+
         const campaign =
             await prisma.campaign.findUnique({
 
                 where: {
+
                     id: body.campaignId
+
                 }
 
             });
@@ -61,7 +86,9 @@ class WebhookService {
         await prisma.campaign.update({
 
             where: {
+
                 id: body.campaignId
+
             },
 
             data: {

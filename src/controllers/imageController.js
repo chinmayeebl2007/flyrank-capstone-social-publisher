@@ -1,6 +1,5 @@
-const path = require("path");
-
 const imageService = require("../services/imageService");
+const costService = require("../services/costService");
 
 class ImageController {
 
@@ -8,39 +7,16 @@ class ImageController {
 
         try {
 
-            if (!req.file) {
+            const result =
+                await imageService.uploadImage(req.file);
 
-                return res.status(400).json({
-                    success: false,
-                    message: "Image is required"
-                });
-
-            }
-
-            const variants =
-                await imageService.processImage(
-                    req.file.filename
-                );
+            costService.trackImageGeneration();
 
             return res.status(201).json({
 
                 success: true,
 
-                message: "Image uploaded successfully",
-
-                original: {
-
-                    filename: req.file.filename,
-
-                    path: path.join(
-                        "uploads",
-                        "originals",
-                        req.file.filename
-                    )
-
-                },
-
-                variants
+                data: result
 
             });
 

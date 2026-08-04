@@ -1,6 +1,7 @@
 const ai = require("../config/gemini");
 
 class CaptionService {
+
     cleanResponse(text) {
 
         let cleaned = text.trim();
@@ -9,9 +10,12 @@ class CaptionService {
         cleaned = cleaned.replace(/```/g, "");
 
         return cleaned.trim();
+
     }
 
-    async generateCaptions(title, body) {
+    async generate(data) {
+
+        const { title, body } = data;
 
         const prompt = `
 Generate captions for the following blog.
@@ -47,15 +51,20 @@ LinkedIn
 
         const response =
             await ai.models.generateContent({
+
                 model: "gemini-2.5-flash",
+
                 contents: prompt
+
             });
 
         const cleaned =
             this.cleanResponse(response.text);
 
         return JSON.parse(cleaned);
+
     }
+
 }
 
 module.exports = new CaptionService();
