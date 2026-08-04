@@ -1,0 +1,8 @@
+2026-08-04T16:10:31.127Z [INFO] PostgreSQL Connected
+2026-08-04T16:10:31.132Z [INFO] Server running on http://localhost:5000
+2026-08-04T16:11:04.263Z [INFO] PostgreSQL Connected
+2026-08-04T16:11:04.270Z [INFO] Server running on http://localhost:5000
+2026-08-04T16:12:17.516Z [INFO] PostgreSQL Connected
+2026-08-04T16:12:17.524Z [INFO] Server running on http://localhost:5000
+2026-08-04T16:13:07.767Z [WARN] GET /api/abcdef - Route not found
+2026-08-04T16:13:56.592Z [INFO] Server stopped

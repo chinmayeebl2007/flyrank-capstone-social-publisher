@@ -4,6 +4,8 @@ const app = require("./app");
 
 const prisma = require("./config/database");
 
+const logger = require("./config/logger");
+
 require("./workers/publisherWorker");
 
 const PORT = process.env.PORT || 5000;
@@ -14,19 +16,19 @@ async function startServer() {
 
         await prisma.$connect();
 
-        console.log("✅ PostgreSQL Connected");
+        logger.info("PostgreSQL Connected");
 
         app.listen(PORT, () => {
 
-            console.log(
-                `🚀 Server running on http://localhost:${PORT}`
+            logger.info(
+                `Server running on http://localhost:${PORT}`
             );
 
         });
 
     } catch (error) {
 
-        console.error(error);
+        logger.error(error.message);
 
         process.exit(1);
 
@@ -40,6 +42,8 @@ process.on("SIGINT", async () => {
 
     await prisma.$disconnect();
 
+    logger.info("Server stopped");
+
     process.exit(0);
 
 });
@@ -47,6 +51,8 @@ process.on("SIGINT", async () => {
 process.on("SIGTERM", async () => {
 
     await prisma.$disconnect();
+
+    logger.info("Server stopped");
 
     process.exit(0);
 
