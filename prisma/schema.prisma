@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHING
+  PUBLISHED
+  FAILED
+}
+
+enum Platform {
+  INSTAGRAM
+  X
+}
+
+enum PostStatus {
+  QUEUED
+  PUBLISHING
+  PUBLISHED
+  FAILED
+}
+
+model Campaign {
+  id          String         @id @default(uuid())
+  title       String
+  body        String
+  url         String
+  status      CampaignStatus @default(DRAFT)
+  scheduledAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  posts         CampaignPost[]
+  webhookEvents WebhookEvent[]
+
+  @@map("campaigns")
+}
+
+model CampaignPost {
+  id             String     @id @default(uuid())
+  campaignId     String
+  platform       Platform
+  caption        String
+  imagePath      String
+  status         PostStatus @default(QUEUED)
+  platformPostId String?
+  idempotencyKey String     @unique
+  retryCount     Int        @default(0)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, platform])
+  @@index([campaignId])
+  @@map("campaign_posts")
+}
+
+model PlatformToken {
+  id                   String   @id @default(uuid())
+  platform             Platform @unique
+  accessTokenEncrypted String
+  iv                   String
+  createdAt            DateTime @default(now())
+
+  @@map("platform_tokens")
+}
+
+model WebhookEvent {
+  id         String   @id @default(uuid())
+  eventId    String   @unique
+  campaignId String
+  platform   Platform
+  signature  String
+  payload    String   @db.Text
+  processed  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+  @@map("webhook_events")
+}
