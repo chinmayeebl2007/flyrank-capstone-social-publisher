@@ -1,14 +1,14 @@
 require("dotenv").config();
 
 const app = require("./app");
-
 const prisma = require("./config/database");
-
 const logger = require("./config/logger");
 
 require("./workers/publisherWorker");
 
 const PORT = process.env.PORT || 5000;
+
+let server;
 
 async function startServer() {
 
@@ -18,7 +18,7 @@ async function startServer() {
 
         logger.info("PostgreSQL Connected");
 
-        app.listen(PORT, () => {
+        server = app.listen(PORT, () => {
 
             logger.info(
                 `Server running on http://localhost:${PORT}`
@@ -28,7 +28,7 @@ async function startServer() {
 
     } catch (error) {
 
-        logger.error(error.message);
+        logger.error(error.stack);
 
         process.exit(1);
 
@@ -38,22 +38,28 @@ async function startServer() {
 
 startServer();
 
-process.on("SIGINT", async () => {
+async function gracefulShutdown(signal) {
 
-    await prisma.$disconnect();
+    logger.info(`${signal} received`);
 
-    logger.info("Server stopped");
+    if (server) {
 
-    process.exit(0);
+        server.close(async () => {
 
-});
+            logger.info("HTTP Server Closed");
 
-process.on("SIGTERM", async () => {
+            await prisma.$disconnect();
 
-    await prisma.$disconnect();
+            logger.info("PostgreSQL Disconnected");
 
-    logger.info("Server stopped");
+            process.exit(0);
 
-    process.exit(0);
+        });
 
-});
+    }
+
+}
+
+process.on("SIGINT", () => gracefulShutdown("SIGINT"));
+
+process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
