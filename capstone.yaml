@@ -1,0 +1,21 @@
+name: flyrank-capstone-social-publisher
+
+run: npm run dev
+
+seed: npm run dev
+
+test: npm test
+
+base_url: http://localhost:5000
+
+endpoints:
+  - POST /api/images/upload
+  - POST /api/captions/generate
+  - POST /api/campaigns
+  - POST /api/campaigns/:id/schedule
+  - POST /api/publish/:id
+  - POST /api/webhooks
+  - GET /api/campaigns/:id
+  - GET /api/costs
+
+repository: https://github.com/YOUR_USERNAME/flyrank-capstone-social-publisher
