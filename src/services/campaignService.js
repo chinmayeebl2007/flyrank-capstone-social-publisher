@@ -1,104 +1,97 @@
 const prisma = require("../config/database");
-const { randomUUID } = require("crypto");
+const publishJob = require("../jobs/publishJob");
 
 class CampaignService {
-  async createCampaign(data) {
-    const { title, body, url } = data;
 
-    const campaign = await prisma.campaign.create({
-      data: {
-        title,
-        body,
-        url,
-      },
-    });
+    async createCampaign(data) {
 
-    return campaign;
-  }
+        return await prisma.campaign.create({
+            data
+        });
 
-  async getAllCampaigns() {
-    return await prisma.campaign.findMany({
-      include: {
-        posts: true,
-        webhookEvents: true,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-  }
-
-  async getCampaignById(id) {
-    const campaign = await prisma.campaign.findUnique({
-      where: { id },
-      include: {
-        posts: true,
-        webhookEvents: true,
-      },
-    });
-
-    if (!campaign) {
-      throw new Error("Campaign not found");
     }
 
-    return campaign;
-  }
+    async getAllCampaigns() {
 
-  async scheduleCampaign(id, scheduledAt) {
-    const campaign = await prisma.campaign.findUnique({
-      where: { id },
-    });
+        return await prisma.campaign.findMany({
+            orderBy: {
+                createdAt: "desc"
+            }
+        });
 
-    if (!campaign) {
-      throw new Error("Campaign not found");
     }
 
-    return await prisma.campaign.update({
-      where: { id },
-      data: {
-        scheduledAt: new Date(scheduledAt),
-        status: "SCHEDULED",
-      },
-    });
-  }
+    async getCampaignById(id) {
 
-  async updateCampaign(id, data) {
-    const campaign = await prisma.campaign.findUnique({
-      where: { id },
-    });
+        const campaign = await prisma.campaign.findUnique({
+            where: { id }
+        });
 
-    if (!campaign) {
-      throw new Error("Campaign not found");
+        if (!campaign) {
+            throw new Error("Campaign not found");
+        }
+
+        return campaign;
+
     }
 
-    return await prisma.campaign.update({
-      where: { id },
-      data: {
-        title: data.title,
-        body: data.body,
-        url: data.url,
-      },
-    });
-  }
+    async updateCampaign(id, data) {
 
-  async deleteCampaign(id) {
-    const campaign = await prisma.campaign.findUnique({
-      where: { id },
-    });
+        return await prisma.campaign.update({
+            where: { id },
+            data
+        });
 
-    if (!campaign) {
-      throw new Error("Campaign not found");
     }
 
-    await prisma.campaign.delete({
-      where: { id },
-    });
+    async deleteCampaign(id) {
 
-    return {
-      success: true,
-      message: "Campaign deleted successfully",
-    };
-  }
+        await prisma.campaign.delete({
+            where: { id }
+        });
+
+        return {
+            success: true,
+            message: "Campaign deleted successfully"
+        };
+
+    }
+
+    async scheduleCampaign(id, scheduledAt) {
+
+        const campaign =
+            await prisma.campaign.findUnique({
+                where: { id }
+            });
+
+        if (!campaign) {
+            throw new Error("Campaign not found");
+        }
+
+        const updatedCampaign =
+            await prisma.campaign.update({
+
+                where: { id },
+
+                data: {
+
+                    status: "SCHEDULED",
+
+                    scheduledAt: new Date(scheduledAt)
+
+                }
+
+            });
+
+        await publishJob.schedule(
+            updatedCampaign.id,
+            scheduledAt
+        );
+
+        return updatedCampaign;
+
+    }
+
 }
 
 module.exports = new CampaignService();
