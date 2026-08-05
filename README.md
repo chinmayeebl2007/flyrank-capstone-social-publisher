@@ -309,6 +309,11 @@ The project was tested using:
 - Google Gemini API
 
 ---
+## 🎥 Demo Video
+
+Watch the complete project demonstration here:
+
+🔗 https://drive.google.com/file/d/1CHKgeMi76PY6SAcLuwczDR5vhrJVodYd/view?usp=sharing
 
 # Future Improvements
 
