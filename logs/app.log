@@ -6,3 +6,120 @@
 2026-08-04T16:12:17.524Z [INFO] Server running on http://localhost:5000
 2026-08-04T16:13:07.767Z [WARN] GET /api/abcdef - Route not found
 2026-08-04T16:13:56.592Z [INFO] Server stopped
+2026-08-04T17:48:58.900Z [ERROR] PrismaClientInitializationError: [1;91merror[0m: [1mEnvironment variable not found: DATABASE_URL.[0m
+  [1;94m-->[0m  [4mschema.prisma:7[0m
+[1;94m   | [0m
+[1;94m 6 | [0m  provider = "postgresql"
+[1;94m 7 | [0m  url      = [1;91menv("DATABASE_URL")[0m
+[1;94m   | [0m
+
+Validation Error Count: 1
+    at r (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\@prisma\client\runtime\library.js:112:2770)
+    at async startServer (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\src\server.js:17:9)
+2026-08-04T17:50:11.475Z [ERROR] PrismaClientInitializationError: Authentication failed against database server, the provided database credentials for `username` are not valid.
+
+Please make sure to provide valid database credentials for the database server at the configured address.
+    at r (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\@prisma\client\runtime\library.js:112:2770)
+    at async startServer (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\src\server.js:17:9)
+2026-08-04T17:51:25.669Z [INFO] PostgreSQL Connected
+2026-08-04T17:51:25.681Z [INFO] Server running on http://localhost:5000
+2026-08-04T17:54:23.509Z [INFO] PostgreSQL Connected
+2026-08-04T17:54:23.519Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:00:57.057Z [INFO] SIGINT received
+2026-08-04T18:03:11.234Z [INFO] PostgreSQL Connected
+2026-08-04T18:03:11.245Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:09:10.669Z [WARN] POST /api/captions/ab52b628-d31b-4120-a046-66aa4dbd76af/schedule - Route not found
+2026-08-04T18:09:45.077Z [WARN] DELETE /api/campaigns/be47333e-7b3a-4269-83f5-6234ce3f8c0f/schedule - Route not found
+2026-08-04T18:10:00.395Z [INFO] SIGINT received
+2026-08-04T18:10:08.475Z [INFO] PostgreSQL Connected
+2026-08-04T18:10:08.486Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:16:01.135Z [INFO] SIGINT received
+2026-08-04T18:16:06.748Z [INFO] PostgreSQL Connected
+2026-08-04T18:16:06.755Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:18:37.256Z [INFO] SIGINT received
+2026-08-04T18:18:42.569Z [INFO] PostgreSQL Connected
+2026-08-04T18:18:42.578Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:22:43.327Z [INFO] SIGINT received
+2026-08-04T18:24:46.357Z [INFO] PostgreSQL Connected
+2026-08-04T18:24:46.374Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:27:03.716Z [INFO] SIGINT received
+2026-08-04T18:28:52.185Z [INFO] PostgreSQL Connected
+2026-08-04T18:28:52.198Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:31:22.012Z [INFO] SIGINT received
+2026-08-04T18:33:37.098Z [INFO] PostgreSQL Connected
+2026-08-04T18:33:37.112Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:34:24.018Z [ERROR] 
+URL: /api/webhooks
+METHOD: POST
+MESSAGE: Unexpected token 'B', "BODY: {"ev"... is not valid JSON
+STACK:
+SyntaxError: Unexpected token 'B', "BODY: {"ev"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\body-parser\lib\types\json.js:137:10)
+    at parse (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\body-parser\lib\types\json.js:86:15)
+    at C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\body-parser\lib\read.js:162:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
+    at invokeCallback (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:524:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+
+2026-08-04T18:39:59.926Z [INFO] PostgreSQL Connected
+2026-08-04T18:39:59.945Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:39:59.977Z [INFO] PostgreSQL Connected
+2026-08-04T18:39:59.992Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:40:34.619Z [INFO] SIGINT received
+2026-08-04T18:41:45.755Z [INFO] PostgreSQL Connected
+2026-08-04T18:41:45.770Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:43:21.890Z [INFO] SIGINT received
+2026-08-04T18:43:26.243Z [INFO] PostgreSQL Connected
+2026-08-04T18:43:26.255Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:48:16.585Z [INFO] SIGINT received
+2026-08-04T18:48:26.592Z [INFO] PostgreSQL Connected
+2026-08-04T18:48:26.602Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:50:00.350Z [INFO] PostgreSQL Connected
+2026-08-04T18:50:00.351Z [INFO] PostgreSQL Connected
+2026-08-04T18:50:00.368Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:50:00.370Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:51:30.193Z [INFO] SIGINT received
+2026-08-04T18:51:36.383Z [INFO] PostgreSQL Connected
+2026-08-04T18:51:36.392Z [INFO] Server running on http://localhost:5000
+2026-08-04T18:51:51.287Z [INFO] SIGINT received
+2026-08-04T18:55:30.140Z [INFO] PostgreSQL Connected
+2026-08-04T18:55:30.153Z [INFO] Server running on http://localhost:5000
+2026-08-04T19:00:08.397Z [INFO] SIGINT received
+2026-08-04T19:00:26.168Z [INFO] PostgreSQL Connected
+2026-08-04T19:00:26.178Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:12:08.849Z [ERROR] PrismaClientInitializationError: Can't reach database server at `localhost:5433`
+
+Please make sure your database server is running at `localhost:5433`.
+    at r (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\node_modules\@prisma\client\runtime\library.js:112:2770)
+    at async startServer (C:\Users\admin\OneDrive\Desktop\flyrank-capstone-social-publisher\src\server.js:17:9)
+2026-08-05T11:16:38.178Z [INFO] PostgreSQL Connected
+2026-08-05T11:16:38.186Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:19:38.696Z [WARN] GET /api/campaigns/47e7a917-62c7-44b4-8f65-b3e7d492dbf1/schedule - Route not found
+2026-08-05T11:23:14.615Z [WARN] POST /api/captions/ab52b628-d31b-4120-a046-66aa4dbd76af/schedule - Route not found
+2026-08-05T11:24:14.791Z [WARN] POST /api/captions/ab52b628-d31b-4120-a046-66aa4dbd76af/schedule - Route not found
+2026-08-05T11:25:02.678Z [WARN] POST /api/captions/ab52b628-d31b-4120-a046-66aa4dbd76af/schedule - Route not found
+2026-08-05T11:28:53.195Z [INFO] SIGINT received
+2026-08-05T11:31:11.555Z [INFO] PostgreSQL Connected
+2026-08-05T11:31:11.562Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:33:30.580Z [INFO] SIGINT received
+2026-08-05T11:33:55.647Z [INFO] PostgreSQL Connected
+2026-08-05T11:33:55.654Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:35:17.054Z [INFO] SIGINT received
+2026-08-05T11:35:37.307Z [INFO] PostgreSQL Connected
+2026-08-05T11:35:37.313Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:36:42.440Z [WARN] POST /api/costs - Route not found
+2026-08-05T11:39:25.131Z [INFO] SIGINT received
+2026-08-05T11:44:13.670Z [INFO] PostgreSQL Connected
+2026-08-05T11:44:13.676Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:49:55.573Z [INFO] SIGINT received
+2026-08-05T11:51:44.579Z [INFO] PostgreSQL Connected
+2026-08-05T11:51:44.586Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:54:31.003Z [INFO] SIGINT received
+2026-08-05T11:54:31.006Z [INFO] HTTP Server Closed
+2026-08-05T11:55:24.264Z [INFO] PostgreSQL Connected
+2026-08-05T11:55:24.274Z [INFO] Server running on http://localhost:5000
+2026-08-05T11:59:57.178Z [INFO] SIGINT received

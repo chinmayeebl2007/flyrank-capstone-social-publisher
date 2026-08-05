@@ -7,6 +7,9 @@ class WebhookService {
 
     async processWebhook(body, receivedSignature) {
 
+    console.log("=== processWebhook called ===");
+    console.log("Body:", body);
+    console.log("Header:", receivedSignature);
         const valid =
             signature.verify(
                 body,

@@ -1,3 +1,4 @@
+console.log("✅ webhookSignature.js loaded");
 const crypto = require("crypto");
 
 class WebhookSignature {

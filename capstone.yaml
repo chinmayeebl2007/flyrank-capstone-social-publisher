@@ -18,4 +18,4 @@ endpoints:
   - GET /api/campaigns/:id
   - GET /api/costs
 
-repository: https://github.com/YOUR_USERNAME/flyrank-capstone-social-publisher
+repository: https://github.com/chinmayeebl2007/flyrank-capstone-social-publisher
